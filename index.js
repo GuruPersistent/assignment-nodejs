@@ -16,25 +16,25 @@ app.use(
 app.use(passport.initialize());
 app.use(passport.session());
 
-app.get("/", isLoggedIn, (req, res) => {
+app.get("/api/", isLoggedIn, (req, res) => {
   res.send({use:req.user});
 });
 
-app.get("/logout", (req, res) => {
+app.get("/api/logout", (req, res) => {
   req.session = null;
   req.logout();
   res.redirect("/");
 });
 
-app.get("/error", (req, res) => res.status(401).send("Unknown Error"));
+app.get("/api/error", (req, res) => res.status(401).send("Unknown Error"));
 
-app.get("/login", passport.authenticate("spotify"));
+app.get("/api/login", passport.authenticate("spotify"));
 
 app.get(
   "/callback",
-  passport.authenticate("spotify", { failureRedirect: "/error" }),
+  passport.authenticate("spotify", { failureRedirect: "/api/error" }),
   function (req, res) {
-    res.redirect("/");
+    res.redirect(process.env.CLIENT_URL);
   }
 );
 
