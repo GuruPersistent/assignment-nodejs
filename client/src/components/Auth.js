@@ -1,6 +1,7 @@
-import React, {useEffect, useState} from "react";
+import React, { useEffect, useState } from "react";
 import axios from "axios";
 import Login from "./Login";
+import Navbar from "./Navbar";
 
 function Auth(props) {
   const [user, setUser] = useState(null);
@@ -8,7 +9,7 @@ function Auth(props) {
   async function getUser() {
     let user = await axios.get("/api/");
     if (!user) {
-      props.history.push("/login");
+      props.history.push("/");
     }
     setUser(user);
   }
@@ -29,7 +30,14 @@ function Auth(props) {
     );
   }
 
-  return <div>{props.children}</div>;
+  return (
+    <div>
+      <Navbar />
+      <div className="container mt-5 mb-3">
+        {props.children}
+      </div>
+    </div>
+  );
 }
 
 export default Auth;

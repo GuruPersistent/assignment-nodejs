@@ -18,7 +18,7 @@ app.use(passport.initialize());
 app.use(passport.session());
 
 app.get("/api/", isLoggedIn, (req, res) => {
-  res.send({ use: req.user });
+  res.send({ use: req.user.displayName });
 });
 
 app.get("/api/logout", (req, res) => {

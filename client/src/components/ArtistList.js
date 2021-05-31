@@ -1,12 +1,19 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 function ArtistList({ artistList }) {
   return (
-    <div className="container text-center">
-      <div className="row">
-        {artistList &&
-          artistList.map((artist) => (
-            <div key={artist.id} className="col-3 p-2">
+    <div className="row text-center">
+      {artistList &&
+        artistList.map((artist) => (
+          <div key={artist.id} className="col-sm-6 col-md-3 p-2">
+            <Link
+              to={{
+                pathname: `/albums/${artist.id}`,
+                state: { artistName: artist.name },
+              }}
+              className="text-decoration-none"
+            >
               <div className="card bg-dark text-white pt-5">
                 <img
                   src={artist.images[0]?.url}
@@ -24,9 +31,9 @@ function ArtistList({ artistList }) {
                   <p className="small">Followers: {artist.followers.total}</p>
                 </div>
               </div>
-            </div>
-          ))}
-      </div>
+            </Link>
+          </div>
+        ))}
     </div>
   );
 }
