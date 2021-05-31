@@ -34,7 +34,7 @@ app.get(
   "/callback",
   passport.authenticate("spotify", { failureRedirect: "/api/error" }),
   function (req, res) {
-    res.redirect(process.env.CLIENT_URL);
+    res.redirect(process.env.CLIENT_URL+'/dashboard');
   }
 );
 
