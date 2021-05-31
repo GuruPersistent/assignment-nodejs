@@ -1,23 +1,17 @@
-import React, { useEffect, useState } from "react";
-import axios from "axios";
+import React from "react";
+import { BrowserRouter, Switch, Route } from "react-router-dom";
 import Login from "./components/Login";
 import Dashboard from "./components/Dashboard";
 
 function App(props) {
-    const [user, setUser] = useState(null);
-
-    useEffect(()=>{
-      async function getUser(){
-        let user = await axios.get("/api/");
-        setUser(user);
-      }
-      getUser();
-    }, []);
-
-    if(!user){
-      return <Login />
-    }
-    return <Dashboard accessToken={user?.data?.use?.accessToken} />;
+  return (
+    <BrowserRouter>
+      <Switch>
+        <Route path="/dashboard" component={Dashboard} />
+        <Route path="/" exact component={Login} />
+      </Switch>
+    </BrowserRouter>
+  );
 }
 
 export default App;
