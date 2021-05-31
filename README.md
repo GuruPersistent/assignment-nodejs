@@ -11,3 +11,6 @@ This repo also includes .env file but on actual project dont add it to the repo.
 
 To run the app use following command
 npm run dev
+
+Original Separate Repo
+https://github.com/GuruPersistent/assignment-nodejs.git
