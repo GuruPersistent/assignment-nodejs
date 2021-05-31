@@ -1,7 +1,6 @@
 import React from "react";
 
 function ArtistList({ artistList }) {
-  console.log(artistList);
   return (
     <div className="container text-center">
       <div className="row">
